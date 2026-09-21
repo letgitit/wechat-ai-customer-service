@@ -1,0 +1,7 @@
+1: exit=1 qa-1.txt
+2: exit=1 qa-2.txt
+3: exit=0 qa-3.txt
+4: exit=0 qa-4.txt
+5: exit=0 qa-5.txt
+6: exit=0 qa-6.txt
+core branches: 96.39%

@@ -5,9 +5,9 @@ from uuid import uuid4
 
 from .config import Config
 from .delta import Delta, GapError
-from .models import SendRequest, SendResult, stamp, utcnow
+from .models import ReplyDraft, SendRequest, SendResult, stamp, utcnow
 from .policy import Authorization, question, send_gate
-from .replies import Replies
+from .replies import reply_provider
 from .storage import Store
 
 
@@ -31,7 +31,7 @@ class Engine:
         self.deadline = monotonic() + min(
             config.run_duration_seconds, auth.duration_seconds or config.run_duration_seconds
         )
-        self.replies = replies or Replies(config, allow_llm=auth.allow_llm)
+        self.replies = replies or reply_provider(config, allow_llm=auth.allow_llm)
         self.delta = Delta()
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="llm-draft")
         self.pending = {}
@@ -79,14 +79,16 @@ class Engine:
             snapshot,
             message,
             stored_text,
-            c.reply_engine,
+            "knowledge" if c.knowledge_enabled else c.reply_engine,
             c.reply_ttl_seconds,
             c.max_pending_tasks,
             expected_generation=self.generation,
         )
         if task_id is None:
             return
-        if c.reply_engine == "llm" and text and len(text) <= c.max_question_chars:
+        if c.knowledge_enabled or (
+            c.reply_engine == "llm" and text and len(text) <= c.max_question_chars
+        ):
             self.pending[task_id] = self.executor.submit(self.replies.generate, text)
         else:
             self.store.finish_draft(task_id, self.replies.generate(text), c.send_mode)
@@ -115,7 +117,31 @@ class Engine:
                 self.ingest(snapshot, message)
         for task_id, future in list(self.pending.items()):
             if future.done():
-                self.store.finish_draft(task_id, future.result(), self.config.send_mode)
+                if self.config.knowledge_enabled:
+                    draft = None
+                    try:
+                        result = future.result()
+                    except Exception:
+                        result = None
+                    task, state = self.store.task(task_id), self.store.state()
+                    active = (
+                        task["status"] == "GENERATING"
+                        and not state["paused"]
+                        and task["expires_at"] > stamp(self.clock())
+                        and all(
+                            task[k] == state[k] for k in ("run_id", "generation", "binding_epoch")
+                        )
+                    )
+                    try:
+                        if result is not None:
+                            draft = self.replies.finalize(task_id, result, active=active)
+                    except Exception:
+                        draft = None
+                    if draft is None:
+                        draft = ReplyDraft("", needs_review=True, reason="KNOWLEDGE_FAILED")
+                else:
+                    draft = future.result()
+                self.store.finish_draft(task_id, draft, self.config.send_mode)
                 del self.pending[task_id]
         self.dispatch()
 

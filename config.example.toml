@@ -49,3 +49,7 @@ request_deadline_seconds = 30.0
 max_response_bytes = 131072
 max_tokens = 500
 retry_count = 0
+
+[knowledge]
+enabled = false
+config_path = "" # 启用时显式设置 examples/knowledge.toml

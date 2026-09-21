@@ -1,0 +1,4 @@
+Would reformat: docs/phase2/scripts/score_predictions.py
+Would reformat: docs/phase2/scripts/validate_pack.py
+Would reformat: docs/phase2/tests/test_score_predictions.py
+3 files would be reformatted, 22 files already formatted

@@ -1,4 +1,5 @@
 include README.md config.example.toml requirements.lock uv.lock
-recursive-include examples *.json
+recursive-include examples *.json *.toml
 recursive-include scripts *.py *.ps1
 recursive-include tests *.py
+recursive-include src/wechat_cs/schemas *.json

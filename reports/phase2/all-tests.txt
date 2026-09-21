@@ -1,0 +1,33 @@
+........................................................................ [ 32%]
+........................................................................ [ 65%]
+........................................................................ [ 98%]
+...                                                                      [100%]
+- generated xml file: /Users/luxingwen/workspace/code/wechat-ai-customer-service/reports/phase2/junit-all.xml -
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.11.15-final-0 _______________
+
+Name                                       Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------------------------------
+src/wechat_cs/__init__.py                      1      0      0      0   100%
+src/wechat_cs/__main__.py                      2      0      0      0   100%
+src/wechat_cs/adapters/__init__.py             0      0      0      0   100%
+src/wechat_cs/adapters/fake.py                47      1     12      1    97%   41
+src/wechat_cs/adapters/wxauto_adapter.py     105      9     38      3    89%   50-57, 96, 124
+src/wechat_cs/cli.py                         184     14     66      9    90%   80-82, 121, 133, 168-170, 174, 179, 181, 248, 264-265, 300
+src/wechat_cs/config.py                       96      4     38      4    94%   83, 85, 121, 128
+src/wechat_cs/delta.py                        35      1     12      1    96%   25
+src/wechat_cs/engine.py                      137      3     50      1    98%   138-139, 191
+src/wechat_cs/knowledge.py                   204     12     82     12    92%   90, 94, 100, 110, 143, 167, 171, 193, 205, 276, 327, 447
+src/wechat_cs/knowledge_answer.py            145      9     70      7    93%   83, 102, 119, 149, 156, 159, 265-266, 275
+src/wechat_cs/knowledge_cli.py                63      2     30      2    96%   65, 79
+src/wechat_cs/knowledge_sources.py           133      9     60      6    92%   70, 101, 115, 125, 142, 152-155, 185->183, 208->207
+src/wechat_cs/locking.py                      10      0      2      0   100%
+src/wechat_cs/models.py                       56      1      2      1    97%   12
+src/wechat_cs/policy.py                       24      0      8      0   100%
+src/wechat_cs/replies.py                      96      2     52      2    97%   112, 147
+src/wechat_cs/storage.py                     154      1     44      2    98%   14->16, 205
+--------------------------------------------------------------------------------------
+TOTAL                                       1492     68    566     51    94%
+Coverage JSON written to file reports/phase2/coverage-all.json
+Required test coverage of 85.0% reached. Total coverage: 93.93%
+219 passed in 3.11s

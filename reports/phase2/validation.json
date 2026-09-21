@@ -1,0 +1,160 @@
+{
+  "python": "3.11.15",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "results": [
+    {
+      "name": "qa",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "scripts/qa.py"
+      ],
+      "started_at": "2026-09-21T06:34:30.025159+00:00",
+      "exit_code": 1,
+      "log": "qa.txt"
+    },
+    {
+      "name": "all-tests",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests",
+        "docs/phase2/tests",
+        "--cov=wechat_cs",
+        "--cov-branch",
+        "--cov-report=json:reports/phase2/coverage-all.json",
+        "--cov-report=term-missing",
+        "--junitxml=reports/phase2/junit-all.xml"
+      ],
+      "started_at": "2026-09-21T06:34:33.633991+00:00",
+      "exit_code": 0,
+      "log": "all-tests.txt"
+    },
+    {
+      "name": "implementation-lint",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "scripts"
+      ],
+      "started_at": "2026-09-21T06:34:36.978613+00:00",
+      "exit_code": 0,
+      "log": "implementation-lint.txt"
+    },
+    {
+      "name": "implementation-format",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "scripts"
+      ],
+      "started_at": "2026-09-21T06:34:36.998960+00:00",
+      "exit_code": 0,
+      "log": "implementation-format.txt"
+    },
+    {
+      "name": "pack-validation",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "docs/phase2/scripts/validate_pack.py"
+      ],
+      "started_at": "2026-09-21T06:34:37.019041+00:00",
+      "exit_code": 0,
+      "log": "pack-validation.txt"
+    },
+    {
+      "name": "evaluation",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "scripts/evaluate_phase2.py"
+      ],
+      "started_at": "2026-09-21T06:34:37.069867+00:00",
+      "exit_code": 0,
+      "log": "evaluation.txt"
+    },
+    {
+      "name": "cli-ingest",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "wechat_cs",
+        "kb",
+        "ingest",
+        "--config",
+        "examples/knowledge.toml",
+        "--offline",
+        "--report",
+        "reports/phase2/ingest.json"
+      ],
+      "started_at": "2026-09-21T06:34:37.715540+00:00",
+      "exit_code": 0,
+      "log": "cli-ingest.txt"
+    },
+    {
+      "name": "cli-preview",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "wechat_cs",
+        "answer",
+        "preview",
+        "--config",
+        "examples/knowledge.toml",
+        "--group",
+        "test-group-a",
+        "--query",
+        "W403_PUBLISH_PERMISSION 发布权限",
+        "--offline",
+        "--report",
+        "reports/phase2/demo.json"
+      ],
+      "started_at": "2026-09-21T06:34:37.792526+00:00",
+      "exit_code": 0,
+      "log": "cli-preview.txt"
+    },
+    {
+      "name": "cli-eval",
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "wechat_cs",
+        "eval",
+        "--config",
+        "examples/knowledge.toml",
+        "--cases",
+        "docs/phase2/fixtures/cases.jsonl",
+        "--predictions",
+        "reports/phase2/cli-predictions.jsonl",
+        "--offline"
+      ],
+      "started_at": "2026-09-21T06:34:38.049790+00:00",
+      "exit_code": 0,
+      "log": "cli-eval.txt"
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_at": "2026-09-21T06:34:38.350350+00:00",
+      "exit_code": 0,
+      "log": "diff-check.txt"
+    }
+  ],
+  "real_wechat": "NOT_RUN",
+  "real_model": "NOT_RUN",
+  "real_semantic_retrieval": "NOT_RUN",
+  "real_customer_quality": "NOT_RUN"
+}

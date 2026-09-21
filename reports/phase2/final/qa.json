@@ -1,0 +1,93 @@
+{
+  "status": "FAIL",
+  "results": [
+    {
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "started_at": "2026-09-21T06:34:30.040281+00:00",
+      "exit_code": 1,
+      "evidence": "reports/qa-1.txt"
+    },
+    {
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "started_at": "2026-09-21T06:34:30.088753+00:00",
+      "exit_code": 1,
+      "evidence": "reports/qa-2.txt"
+    },
+    {
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-m",
+        "not live_wechat and not live_llm",
+        "--cov",
+        "--cov-branch",
+        "--cov-report=term-missing",
+        "--cov-report=json:reports/coverage-core.json",
+        "--junitxml=reports/junit.xml"
+      ],
+      "started_at": "2026-09-21T06:34:30.111414+00:00",
+      "exit_code": 0,
+      "evidence": "reports/qa-3.txt"
+    },
+    {
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "wechat_cs",
+        "demo",
+        "--scenario",
+        "examples/scenarios/basic.json",
+        "--report",
+        "reports/demo.json"
+      ],
+      "started_at": "2026-09-21T06:34:33.265916+00:00",
+      "exit_code": 0,
+      "evidence": "reports/qa-4.txt"
+    },
+    {
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_m2.py::test_a26_crash_recovery_subprocess"
+      ],
+      "started_at": "2026-09-21T06:34:33.342076+00:00",
+      "exit_code": 0,
+      "evidence": "reports/qa-5.txt"
+    },
+    {
+      "command": [
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "-m",
+        "wechat_cs",
+        "doctor",
+        "--adapter",
+        "mock",
+        "--report",
+        "reports/doctor-mock.json"
+      ],
+      "started_at": "2026-09-21T06:34:33.556360+00:00",
+      "exit_code": 0,
+      "evidence": "reports/qa-6.txt"
+    }
+  ],
+  "core_branch_percent": 96.3855421686747,
+  "windows": "NOT_RUN",
+  "live_llm": "NOT_RUN"
+}

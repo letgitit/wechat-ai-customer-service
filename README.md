@@ -163,3 +163,48 @@ W11 以离线故障注入为主，不为测试破坏真实微信；W12 确认时
 - Windows 安装、桌面兼容、PowerShell 脚本实跑、真实收发和真实 LLM 均未在本次执行。
 - 报告入口：[验收报告](reports/ACCEPTANCE_REPORT.md)、[阶段记录](reports/PROGRESS.md)、
   [实现决策与资料](reports/DECISIONS.md)。阶段报告保留验收当时的环境与仓库状态。
+
+## v0.2 多源知识草稿（默认 shadow）
+
+增量引擎复用现有接收、去重、线程和任务状态机。默认 `[knowledge] enabled=false`，旧 fixed/FAQ/LLM 行为保留。
+知识库使用独立 SQLite；本轮 **只保存 shadow**，原任务答案为空、不能 approve，不存在自动审批或自动发送路径。
+原因：原审核入口尚不具备知识来源撤权复核与结构化证据呈现，不能直接复用它放行新草稿。
+
+安装依赖仍用上方锁文件命令。下面只读取 `docs/phase2/fixtures` 合成材料，不调用网络、模型或微信：
+
+```bash
+.venv/bin/python -m wechat_cs kb ingest --config examples/knowledge.toml --offline
+.venv/bin/python -m wechat_cs kb status --config examples/knowledge.toml
+.venv/bin/python -m wechat_cs kb search --config examples/knowledge.toml --group test-group-a --query "发布权限"
+.venv/bin/python -m wechat_cs answer preview --config examples/knowledge.toml --group test-group-a --query "W403_PUBLISH_PERMISSION 发布权限" --offline
+.venv/bin/python -m wechat_cs answer explain --config examples/knowledge.toml --group test-group-a --query "发布权限"
+# 查看与原 task_id 关联的本地 shadow 快照（含资料正文，仅供授权本机操作者查看）
+.venv/bin/python -m wechat_cs answer explain --config examples/knowledge.toml --task-id TASK_ID
+.venv/bin/python -m wechat_cs eval --config examples/knowledge.toml --cases docs/phase2/fixtures/cases.jsonl --predictions .runtime/predictions.jsonl --offline
+# 合成测试夹具对照：独立为每例设置可信范围和语料；不把 golden 标签传入生产引擎
+.venv/bin/python scripts/evaluate_phase2.py
+.venv/bin/python -m pytest -q tests/test_knowledge.py
+```
+
+`eval` CLI 使用本地群绑定，绝不会用题目文本或评测文件覆盖部署范围；产生的是实际预测，不宣称答题通过。
+夹具中的标签 ID 与程序内容哈希 ID 不同，不能直接混算。
+`evaluate_phase2.py` 专门核对夹具真实文件/行号/哈希后登记证据、映射 ID，再用原评分器对比
+manual-only、manual-history、all-sources，包含缺预测分母和引用追踪检查。报告在 `reports/phase2`。
+夹具是用户提供的 `docs/phase2` 输入包；本轮保留其原始文件，未将它们混入实现提交。
+
+要在原 Mock 接收链中启用，将本地配置的 `[knowledge]` 设置为：
+
+```toml
+[knowledge]
+enabled = true
+config_path = "examples/knowledge.toml"
+```
+
+同时把 `[wechat] binding_id` 设置为独立知识配置中已登记的绑定 ID（示例为 `test-group-a`），保留
+`adapter="mock"`、`send_mode="dry_run"`、`allow_send=false`。
+运行 `.venv/bin/python -m wechat_cs run --config config.local.toml --duration-seconds 10`。
+Mock 不会自行制造问题；确定性测试使用 Fake 快照验证完整接收→检索→草稿→shadow 链路。
+设回 `enabled=false` 即使用原回复引擎，不删库、不重置发送预算、不重放旧事件。
+
+具体资料清单、权限、更新/撤销、定位、人工处理及能力限制见 [知识操作手册](reports/phase2/OPERATIONS.md)。
+实际基线和验证结论见 [P0 代码地图](reports/phase2/CODEBASE_MAP.md)、[交付报告](reports/phase2/TEST_REPORT.md)。

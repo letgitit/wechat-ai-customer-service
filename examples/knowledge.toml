@@ -1,0 +1,22 @@
+[knowledge]
+mode = "shadow"
+auto_send = false
+require_review = true
+db_path = "../.runtime/knowledge.sqlite3"
+manifest = "knowledge-sources.toml"
+
+[model]
+provider = "mock"
+
+[embedding]
+provider = "disabled"
+
+[[group_bindings]]
+id = "test-group-a"
+tenant_id = "demo-a"
+product_id = "demo-warning"
+deployed_version = "2.1"
+deployed_revision = "fixture-v21"
+
+[retrieval.aliases]
+"发不出去" = ["发布"]

@@ -1,0 +1,102 @@
+E501 Line too long (102 > 100)
+   --> docs/phase2/scripts/score_predictions.py:149:101
+    |
+147 |         report = score(load_jsonl(args.cases), load_jsonl(args.predictions), args.k)
+148 |         args.out.parent.mkdir(parents=True, exist_ok=True)
+149 |         args.out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    |                                                                                                     ^^
+150 |     except (OSError, ValueError, KeyError) as exc:
+151 |         print(f"Scoring failed: {exc}", file=sys.stderr)
+    |
+
+E501 Line too long (116 > 100)
+   --> docs/phase2/scripts/score_predictions.py:153:101
+    |
+151 |         print(f"Scoring failed: {exc}", file=sys.stderr)
+152 |         return 2
+153 |     print(json.dumps({key: value for key, value in report.items() if key != "cases"}, ensure_ascii=False, indent=2))
+    |                                                                                                     ^^^^^^^^^^^^^^^^
+154 |     return 0
+    |
+
+B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+  --> docs/phase2/scripts/validate_pack.py:13:5
+   |
+11 |     from jsonschema import Draft202012Validator, FormatChecker
+12 | except ImportError:
+13 |     raise SystemExit("Missing development dependency: install jsonschema before validating this pack.")
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+14 |
+15 | ROOT = Path(__file__).resolve().parents[1]
+   |
+
+E501 Line too long (103 > 100)
+  --> docs/phase2/scripts/validate_pack.py:13:101
+   |
+11 |     from jsonschema import Draft202012Validator, FormatChecker
+12 | except ImportError:
+13 |     raise SystemExit("Missing development dependency: install jsonschema before validating this pack.")
+   |                                                                                                     ^^^
+14 |
+15 | ROOT = Path(__file__).resolve().parents[1]
+   |
+
+E501 Line too long (103 > 100)
+  --> docs/phase2/scripts/validate_pack.py:19:101
+   |
+18 | def read_jsonl(path: Path) -> list[dict]:
+19 |     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+   |                                                                                                     ^^^
+   |
+
+E501 Line too long (101 > 100)
+  --> docs/phase2/scripts/validate_pack.py:28:101
+   |
+27 | def main() -> int:
+28 |     evidence_schema = json.loads((ROOT / "schemas/evidence.schema.json").read_text(encoding="utf-8"))
+   |                                                                                                     ^
+29 |     answer_schema = json.loads((ROOT / "schemas/answer_draft.schema.json").read_text(encoding="utf-8"))
+30 |     for schema in [evidence_schema, answer_schema]:
+   |
+
+E501 Line too long (103 > 100)
+  --> docs/phase2/scripts/validate_pack.py:29:101
+   |
+27 | def main() -> int:
+28 |     evidence_schema = json.loads((ROOT / "schemas/evidence.schema.json").read_text(encoding="utf-8"))
+29 |     answer_schema = json.loads((ROOT / "schemas/answer_draft.schema.json").read_text(encoding="utf-8"))
+   |                                                                                                     ^^^
+30 |     for schema in [evidence_schema, answer_schema]:
+31 |         Draft202012Validator.check_schema(schema)
+   |
+
+E501 Line too long (129 > 100)
+  --> docs/phase2/scripts/validate_pack.py:51:101
+   |
+49 |         digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
+50 |         check(digest == row["content_hash"], f"Hash mismatch: {row['evidence_id']}")
+51 |         check(not row["allow_external_generation"] and not row["allow_external_embedding"], "Fixture must be offline by default")
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+52 |     case_ids = [r["case_id"] for r in cases]
+53 |     check(len(case_ids) == len(set(case_ids)), "Duplicate case IDs")
+   |
+
+B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+  --> docs/phase2/scripts/validate_pack.py:86:9
+   |
+84 |     except (ValueError, OSError, KeyError) as exc:
+85 |         print(f"Pack validation failed: {exc}", file=sys.stderr)
+86 |         raise SystemExit(1)
+   |         ^^^^^^^^^^^^^^^^^^^
+   |
+
+E501 Line too long (102 > 100)
+  --> docs/phase2/tests/test_score_predictions.py:25:101
+   |
+25 | def prediction(case_id="Q1", retrieved=None, prompt=None, cited=None, action="answer", reply="draft"):
+   |                                                                                                     ^^
+26 |     return {
+27 |         "case_id": case_id,
+   |
+
+Found 10 errors.

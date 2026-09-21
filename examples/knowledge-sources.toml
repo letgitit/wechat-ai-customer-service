@@ -1,0 +1,61 @@
+
+[[sources]]
+id = "fixture-manual"
+type = "manual"
+include = ["manual_v21.md"]
+enabled = true
+root = "../docs/phase2/fixtures"
+product_id = "demo-warning"
+version = "2.1"
+revision = "fixture-v21"
+tenant_ids = ["demo-a"]
+group_ids = ["test-group-a"]
+status = "active"
+reviewer = "fixture-reviewer"
+audience = "customer"
+allow_customer_derivation = true
+allow_external_generation = false
+allow_external_embedding = false
+synthetic = true
+valid_from = "2026-01-01"
+
+[[sources]]
+id = "fixture-code"
+type = "code"
+include = ["product_publish_v21.py"]
+role = "product"
+enabled = true
+root = "../docs/phase2/fixtures"
+product_id = "demo-warning"
+version = "2.1"
+revision = "fixture-v21"
+tenant_ids = ["demo-a"]
+group_ids = ["test-group-a"]
+status = "active"
+reviewer = "fixture-reviewer"
+audience = "customer"
+allow_customer_derivation = true
+allow_external_generation = false
+allow_external_embedding = false
+synthetic = true
+valid_from = "2026-01-01"
+
+[[sources]]
+id = "fixture-history"
+type = "history"
+include = ["history_cases.jsonl"]
+enabled = true
+root = "../docs/phase2/fixtures"
+product_id = "demo-warning"
+version = "2.1"
+revision = "fixture-v21"
+tenant_ids = ["demo-a"]
+group_ids = ["test-group-a"]
+status = "active"
+reviewer = "fixture-reviewer"
+audience = "customer"
+allow_customer_derivation = true
+allow_external_generation = false
+allow_external_embedding = false
+synthetic = true
+valid_from = "2026-01-01"

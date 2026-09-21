@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "synthetic": true,
+  "predictions": 30,
+  "quality": "NOT_RUN",
+  "semantic_retrieval": "NOT_RUN",
+  "note": "IDs are content-derived; map fixture labels by source/locator before scoring."
+}

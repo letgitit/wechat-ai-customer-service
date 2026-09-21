@@ -65,6 +65,53 @@ class Replies:
             return ReplyDraft(entry["answer"], (entry["source_id"],))
         return self._model(question, entry)
 
+    def request_json(self, payload, *, deadline=None):
+        c = self.config
+        deadline = (
+            deadline if deadline is not None else self.monotonic() + c.request_deadline_seconds
+        )
+        timeout = httpx.Timeout(
+            connect=c.connect_timeout_seconds,
+            read=c.read_timeout_seconds,
+            write=c.write_timeout_seconds,
+            pool=c.pool_timeout_seconds,
+        )
+        with httpx.Client(
+            transport=self.transport, timeout=timeout, follow_redirects=False, trust_env=False
+        ) as client:
+            with client.stream(
+                "POST",
+                c.endpoint,
+                json=payload,
+                headers={"Authorization": f"Bearer {self.key}"},
+            ) as response:
+                response.raise_for_status()
+                body = bytearray()
+                for chunk in response.iter_bytes():
+                    body.extend(chunk)
+                    if len(body) > c.max_response_bytes:
+                        raise ValueError("RESPONSE_TOO_LARGE")
+                    if self.monotonic() >= deadline:
+                        raise ValueError("DEADLINE_EXCEEDED")
+        data = json.loads(body)
+        if (
+            not isinstance(data, dict)
+            or not isinstance(data.get("choices"), list)
+            or not data["choices"]
+            or not isinstance(data["choices"][0], dict)
+        ):
+            raise ValueError("INVALID_ENVELOPE")
+        if data["choices"][0].get("finish_reason") not in (None, "stop"):
+            raise ValueError("TRUNCATED_RESPONSE")
+        choice = data["choices"][0]["message"]
+        if not isinstance(choice, dict) or not isinstance(choice.get("content"), str):
+            raise ValueError("INVALID_MESSAGE")
+        if choice.get("tool_calls") or choice.get("function_call"):
+            raise ValueError("TOOLS_FORBIDDEN")
+        if self.monotonic() >= deadline:
+            raise ValueError("DEADLINE_EXCEEDED")
+        return json.loads(choice["content"])
+
     def _model(self, question, entry):
         c = self.config
         deadline = self.monotonic() + c.request_deadline_seconds
@@ -90,34 +137,7 @@ class Replies:
             ],
         }
         try:
-            timeout = httpx.Timeout(
-                connect=c.connect_timeout_seconds,
-                read=c.read_timeout_seconds,
-                write=c.write_timeout_seconds,
-                pool=c.pool_timeout_seconds,
-            )
-            with httpx.Client(
-                transport=self.transport, timeout=timeout, follow_redirects=False, trust_env=False
-            ) as client:
-                with client.stream(
-                    "POST",
-                    c.endpoint,
-                    json=payload,
-                    headers={"Authorization": f"Bearer {self.key}"},
-                ) as response:
-                    response.raise_for_status()
-                    body = bytearray()
-                    for chunk in response.iter_bytes():
-                        body.extend(chunk)
-                        if len(body) > c.max_response_bytes:
-                            raise ValueError("RESPONSE_TOO_LARGE")
-                        if self.monotonic() >= deadline:
-                            raise ValueError("DEADLINE_EXCEEDED")
-            data = json.loads(body)
-            choice = data["choices"][0]["message"]
-            if choice.get("tool_calls") or choice.get("function_call"):
-                raise ValueError("TOOLS_FORBIDDEN")
-            answer = json.loads(choice["content"])
+            answer = self.request_json(payload, deadline=deadline)
             text, sources = answer["answer"], answer["source_ids"]
             if not isinstance(text, str) or not text.strip() or len(text) > c.max_reply_chars:
                 raise ValueError("INVALID_ANSWER")
@@ -129,3 +149,11 @@ class Replies:
         except (httpx.HTTPError, ValueError, KeyError, IndexError, TypeError):
             # 错误只记录固定类别，不泄露响应、URL、密钥或问题。
             return ReplyDraft("", needs_review=True, reason="LLM_FAILED")
+
+
+def reply_provider(config, **kwargs):
+    if config.knowledge_enabled:
+        from .knowledge_answer import KnowledgeReplies
+
+        return KnowledgeReplies(config, **kwargs)
+    return Replies(config, **kwargs)

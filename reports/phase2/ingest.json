@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "source": "fixture-manual",
+      "path": "manual_v21.md",
+      "status": "IMPORTED",
+      "chunks": 6
+    },
+    {
+      "source": "fixture-code",
+      "path": "product_publish_v21.py",
+      "status": "IMPORTED",
+      "chunks": 2
+    },
+    {
+      "source": "fixture-history",
+      "path": "history_cases.jsonl",
+      "status": "IMPORTED",
+      "chunks": 2
+    }
+  ],
+  "changed": 0,
+  "removed": 0,
+  "index_revision": "cb3a1712ca80a51ce8dbc695885662cabf84fc6bb072fe5e79eb619b01291dde",
+  "tokenizer": "jieba-search-0.42.1-exact-v1"
+}

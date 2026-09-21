@@ -1,0 +1,326 @@
+{
+  "draft": {
+    "schema_version": "0.2",
+    "action": "answer",
+    "customer_reply": "执行发布需要 warning:publish 权限。出现 W403_PUBLISH_PERMISSION 时，请联系系统管理员核对发布权限。\n权限变更后重新登录，再从“发布中心 → 待发布”重试。不要直接修改数据库或关闭权限校验。",
+    "evidence_summary": "Mock 摘录，仅供离线契约验证。",
+    "citations": [
+      {
+        "evidence_id": "42117afe400f4adf576fea1f12bd9355849cc83d8656519146ea57c1dc152470",
+        "claim": "执行发布需要 warning:publish 权限。出现 W403_PUBLISH_PERMISSION 时，请联系系统管理员核对发布权限。\n权限变更后重新登录，再从“发布中心 → 待发布”重试。不要直接修改数据库或关闭权限校验。"
+      }
+    ],
+    "missing_information": [],
+    "risk_flags": []
+  },
+  "review": {
+    "decision": "review",
+    "reason_codes": [],
+    "review_required": true,
+    "safe_customer_reply": "执行发布需要 warning:publish 权限。出现 W403_PUBLISH_PERMISSION 时，请联系系统管理员核对发布权限。\n权限变更后重新登录，再从“发布中心 → 待发布”重试。不要直接修改数据库或关闭权限校验。",
+    "source_snapshot": [
+      {
+        "evidence_id": "42117afe400f4adf576fea1f12bd9355849cc83d8656519146ea57c1dc152470",
+        "revision": "fixture-v21",
+        "locator": {
+          "end_line": 9,
+          "path": "manual_v21.md",
+          "section": "发布权限",
+          "start_line": 6
+        },
+        "content_hash": "abb8e595e0a75c9b68051c2ffe18d51711718729720d503a6b31217c26b28364"
+      },
+      {
+        "evidence_id": "e11d4ecfa7b9a18991d18a7089b5f85e9d6599248aed063f675236e0d13afbb1",
+        "revision": "fixture-v21",
+        "locator": {
+          "end_line": 10,
+          "path": "product_publish_v21.py",
+          "start_line": 4,
+          "symbol": "validate_publish"
+        },
+        "content_hash": "269879c40886664e6d6161d8f29fd33d0ed2c0a3f278794f756c11c043816cc2"
+      },
+      {
+        "evidence_id": "09af05eeabd830b37eaa725787206fe2aab5989a95c3758382b92c2e9c1fecec",
+        "revision": "fixture-v21",
+        "locator": {
+          "end_line": 1,
+          "path": "history_cases.jsonl",
+          "section": "history-21-ok",
+          "start_line": 1
+        },
+        "content_hash": "d488ab45395b9d81d8aafbd33322f107b86039cfcb558aa0ccac50c513fc2421"
+      },
+      {
+        "evidence_id": "ddaf901cdaa269b7f5cff08717bfa104c320188fccb977513a6c58e86db6bb7b",
+        "revision": "fixture-v21",
+        "locator": {
+          "end_line": 17,
+          "path": "manual_v21.md",
+          "section": "现场状态",
+          "start_line": 16
+        },
+        "content_hash": "27628b98d7f182836f4175948b7b6439085c6321e04269c6748a61ad3ebdee06"
+      },
+      {
+        "evidence_id": "a6bc0b04726c6b60215dae5bbae6b9f00f3980589b377fff6fe2e6a88ce7c373",
+        "revision": "fixture-v21",
+        "locator": {
+          "end_line": 5,
+          "path": "manual_v21.md",
+          "section": "发布入口",
+          "start_line": 3
+        },
+        "content_hash": "555053647c754d5d715defe6f8a6c7f57c1548adc83c25700401d8d7925ed996"
+      },
+      {
+        "evidence_id": "d8fa30fb73a79857ec1f52a830854b30c8089bb4c800d9fe2359648d9df5ba27",
+        "revision": "fixture-v21",
+        "locator": {
+          "end_line": 12,
+          "path": "manual_v21.md",
+          "section": "审核要求",
+          "start_line": 10
+        },
+        "content_hash": "d93222442b1d62ccb3d846adb866e5e8a9e8b8780198642070abcdbd778762af"
+      }
+    ]
+  },
+  "retrieval": {
+    "evidence": [
+      {
+        "allow_customer_derivation": true,
+        "allow_external_embedding": false,
+        "allow_external_generation": false,
+        "audience": "customer",
+        "content_hash": "abb8e595e0a75c9b68051c2ffe18d51711718729720d503a6b31217c26b28364",
+        "evidence_id": "42117afe400f4adf576fea1f12bd9355849cc83d8656519146ea57c1dc152470",
+        "group_ids": [
+          "test-group-a"
+        ],
+        "locator": {
+          "end_line": 9,
+          "path": "manual_v21.md",
+          "section": "发布权限",
+          "start_line": 6
+        },
+        "product_id": "demo-warning",
+        "reviewer": "fixture-reviewer",
+        "revision": "fixture-v21",
+        "source_id": "fixture-manual",
+        "source_type": "manual",
+        "status": "active",
+        "synthetic": true,
+        "tenant_ids": [
+          "demo-a"
+        ],
+        "text": "## 发布权限\n执行发布需要 warning:publish 权限。出现 W403_PUBLISH_PERMISSION 时，请联系系统管理员核对发布权限。\n权限变更后重新登录，再从“发布中心 → 待发布”重试。不要直接修改数据库或关闭权限校验。",
+        "valid_from": "2026-01-01",
+        "valid_until": null,
+        "version": "2.1"
+      },
+      {
+        "allow_customer_derivation": true,
+        "allow_external_embedding": false,
+        "allow_external_generation": false,
+        "audience": "customer",
+        "content_hash": "269879c40886664e6d6161d8f29fd33d0ed2c0a3f278794f756c11c043816cc2",
+        "evidence_id": "e11d4ecfa7b9a18991d18a7089b5f85e9d6599248aed063f675236e0d13afbb1",
+        "group_ids": [
+          "test-group-a"
+        ],
+        "locator": {
+          "end_line": 10,
+          "path": "product_publish_v21.py",
+          "start_line": 4,
+          "symbol": "validate_publish"
+        },
+        "product_id": "demo-warning",
+        "reviewer": "fixture-reviewer",
+        "revision": "fixture-v21",
+        "source_id": "fixture-code",
+        "source_type": "code",
+        "status": "active",
+        "synthetic": true,
+        "tenant_ids": [
+          "demo-a"
+        ],
+        "text": "def validate_publish(permissions: set[str], approved: bool) -> tuple[bool, str]:\n    \"\"\"v2.1：先检查发布权限，再检查审核状态。\"\"\"\n    if \"warning:publish\" not in permissions:\n        return False, \"W403_PUBLISH_PERMISSION\"\n    if not approved:\n        return False, \"W409_NOT_APPROVED\"\n    return True, \"OK\"",
+        "valid_from": "2026-01-01",
+        "valid_until": null,
+        "version": "2.1"
+      },
+      {
+        "allow_customer_derivation": true,
+        "allow_external_embedding": false,
+        "allow_external_generation": false,
+        "audience": "customer",
+        "content_hash": "d488ab45395b9d81d8aafbd33322f107b86039cfcb558aa0ccac50c513fc2421",
+        "evidence_id": "09af05eeabd830b37eaa725787206fe2aab5989a95c3758382b92c2e9c1fecec",
+        "group_ids": [
+          "test-group-a"
+        ],
+        "locator": {
+          "end_line": 1,
+          "path": "history_cases.jsonl",
+          "section": "history-21-ok",
+          "start_line": 1
+        },
+        "product_id": "demo-warning",
+        "reviewer": "fixture-reviewer",
+        "revision": "fixture-v21",
+        "source_id": "fixture-history",
+        "source_type": "history",
+        "status": "active",
+        "synthetic": true,
+        "tenant_ids": [
+          "demo-a"
+        ],
+        "text": "question: v2.1 发布报 W403_PUBLISH_PERMISSION 怎么办？\ncontext: 管理员确认该账号原来没有发布权限。\nanswer: 请管理员补充发布权限，重新登录后从发布中心的待发布列表重试。\nresolution: 管理员补齐权限并重新登录后，客户确认发布成功。",
+        "valid_from": "2026-01-01",
+        "valid_until": null,
+        "version": "2.1"
+      },
+      {
+        "allow_customer_derivation": true,
+        "allow_external_embedding": false,
+        "allow_external_generation": false,
+        "audience": "customer",
+        "content_hash": "27628b98d7f182836f4175948b7b6439085c6321e04269c6748a61ad3ebdee06",
+        "evidence_id": "ddaf901cdaa269b7f5cff08717bfa104c320188fccb977513a6c58e86db6bb7b",
+        "group_ids": [
+          "test-group-a"
+        ],
+        "locator": {
+          "end_line": 17,
+          "path": "manual_v21.md",
+          "section": "现场状态",
+          "start_line": 16
+        },
+        "product_id": "demo-warning",
+        "reviewer": "fixture-reviewer",
+        "revision": "fixture-v21",
+        "source_id": "fixture-manual",
+        "source_type": "manual",
+        "status": "active",
+        "synthetic": true,
+        "tenant_ids": [
+          "demo-a"
+        ],
+        "text": "## 现场状态\n本手册不能确认服务器当前是否在线，也不能确认某个具体账号当前已经获得权限。",
+        "valid_from": "2026-01-01",
+        "valid_until": null,
+        "version": "2.1"
+      },
+      {
+        "allow_customer_derivation": true,
+        "allow_external_embedding": false,
+        "allow_external_generation": false,
+        "audience": "customer",
+        "content_hash": "555053647c754d5d715defe6f8a6c7f57c1548adc83c25700401d8d7925ed996",
+        "evidence_id": "a6bc0b04726c6b60215dae5bbae6b9f00f3980589b377fff6fe2e6a88ce7c373",
+        "group_ids": [
+          "test-group-a"
+        ],
+        "locator": {
+          "end_line": 5,
+          "path": "manual_v21.md",
+          "section": "发布入口",
+          "start_line": 3
+        },
+        "product_id": "demo-warning",
+        "reviewer": "fixture-reviewer",
+        "revision": "fixture-v21",
+        "source_id": "fixture-manual",
+        "source_type": "manual",
+        "status": "active",
+        "synthetic": true,
+        "tenant_ids": [
+          "demo-a"
+        ],
+        "text": "## 发布入口\nv2.1 的发布入口为“发布中心 → 待发布”。制作页面保存后不能直接替代发布。",
+        "valid_from": "2026-01-01",
+        "valid_until": null,
+        "version": "2.1"
+      },
+      {
+        "allow_customer_derivation": true,
+        "allow_external_embedding": false,
+        "allow_external_generation": false,
+        "audience": "customer",
+        "content_hash": "d93222442b1d62ccb3d846adb866e5e8a9e8b8780198642070abcdbd778762af",
+        "evidence_id": "d8fa30fb73a79857ec1f52a830854b30c8089bb4c800d9fe2359648d9df5ba27",
+        "group_ids": [
+          "test-group-a"
+        ],
+        "locator": {
+          "end_line": 12,
+          "path": "manual_v21.md",
+          "section": "审核要求",
+          "start_line": 10
+        },
+        "product_id": "demo-warning",
+        "reviewer": "fixture-reviewer",
+        "revision": "fixture-v21",
+        "source_id": "fixture-manual",
+        "source_type": "manual",
+        "status": "active",
+        "synthetic": true,
+        "tenant_ids": [
+          "demo-a"
+        ],
+        "text": "## 审核要求\n预警审核通过后才能发布。出现 W409_NOT_APPROVED 时，请先提交审核并等待审核通过。",
+        "valid_from": "2026-01-01",
+        "valid_until": null,
+        "version": "2.1"
+      }
+    ],
+    "scope": {
+      "id": "test-group-a",
+      "tenant_id": "demo-a",
+      "product_id": "demo-warning",
+      "deployed_version": "2.1",
+      "deployed_revision": "fixture-v21",
+      "group_id": "test-group-a"
+    },
+    "query": "W403_PUBLISH_PERMISSION 发布权限",
+    "query_expansion": [],
+    "rank_trace": {
+      "42117afe400f4adf576fea1f12bd9355849cc83d8656519146ea57c1dc152470": 0.01639344262295082,
+      "e11d4ecfa7b9a18991d18a7089b5f85e9d6599248aed063f675236e0d13afbb1": 0.016129032258064516,
+      "09af05eeabd830b37eaa725787206fe2aab5989a95c3758382b92c2e9c1fecec": 0.015873015873015872,
+      "ddaf901cdaa269b7f5cff08717bfa104c320188fccb977513a6c58e86db6bb7b": 0.015625,
+      "a6bc0b04726c6b60215dae5bbae6b9f00f3980589b377fff6fe2e6a88ce7c373": 0.015384615384615385,
+      "d8fa30fb73a79857ec1f52a830854b30c8089bb4c800d9fe2359648d9df5ba27": 0.015151515151515152
+    },
+    "parser_trace": {
+      "a6bc0b04726c6b60215dae5bbae6b9f00f3980589b377fff6fe2e6a88ce7c373": "headings",
+      "42117afe400f4adf576fea1f12bd9355849cc83d8656519146ea57c1dc152470": "headings",
+      "d8fa30fb73a79857ec1f52a830854b30c8089bb4c800d9fe2359648d9df5ba27": "headings",
+      "ddaf901cdaa269b7f5cff08717bfa104c320188fccb977513a6c58e86db6bb7b": "headings",
+      "e11d4ecfa7b9a18991d18a7089b5f85e9d6599248aed063f675236e0d13afbb1": "python-ast",
+      "09af05eeabd830b37eaa725787206fe2aab5989a95c3758382b92c2e9c1fecec": "reviewed-case"
+    },
+    "retrieval_mode": "lexical",
+    "degraded_reason": "embedding_disabled; semantic_retrieval=NOT_RUN",
+    "index_revision": "cb3a1712ca80a51ce8dbc695885662cabf84fc6bb072fe5e79eb619b01291dde",
+    "elapsed_ms": 177.02537498553284,
+    "tokenizer": "jieba-search-0.42.1-exact-v1",
+    "embedding": null
+  },
+  "prompt_version": "knowledge-0.2-1",
+  "model_input_evidence_ids": [
+    "42117afe400f4adf576fea1f12bd9355849cc83d8656519146ea57c1dc152470",
+    "e11d4ecfa7b9a18991d18a7089b5f85e9d6599248aed063f675236e0d13afbb1",
+    "09af05eeabd830b37eaa725787206fe2aab5989a95c3758382b92c2e9c1fecec",
+    "ddaf901cdaa269b7f5cff08717bfa104c320188fccb977513a6c58e86db6bb7b",
+    "a6bc0b04726c6b60215dae5bbae6b9f00f3980589b377fff6fe2e6a88ce7c373",
+    "d8fa30fb73a79857ec1f52a830854b30c8089bb4c800d9fe2359648d9df5ba27"
+  ],
+  "model": "mock:",
+  "elapsed_ms": 177.87458401289769,
+  "deadline": 253256.229124666,
+  "mode": "shadow",
+  "auto_send": false
+}

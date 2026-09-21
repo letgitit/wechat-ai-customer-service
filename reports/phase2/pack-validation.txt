@@ -1,0 +1,9 @@
+{
+  "fixture_integrity": "PASS",
+  "evidence_records": 17,
+  "synthetic_cases": 30,
+  "application_repository_tests": "NOT_RUN",
+  "actual_llm_and_embedding": "NOT_RUN",
+  "real_customer_answer_quality": "NOT_RUN",
+  "wechat_send": "NOT_RUN"
+}

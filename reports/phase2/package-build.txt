@@ -1,0 +1,83 @@
+Building wheel...
+running egg_info
+writing src/wechat_cs.egg-info/PKG-INFO
+writing dependency_links to src/wechat_cs.egg-info/dependency_links.txt
+writing entry points to src/wechat_cs.egg-info/entry_points.txt
+writing requirements to src/wechat_cs.egg-info/requires.txt
+writing top-level names to src/wechat_cs.egg-info/top_level.txt
+reading manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+running bdist_wheel
+running build
+running build_py
+copying src/wechat_cs/knowledge_answer.py -> build/lib/wechat_cs
+copying src/wechat_cs/knowledge_cli.py -> build/lib/wechat_cs
+running egg_info
+writing src/wechat_cs.egg-info/PKG-INFO
+writing dependency_links to src/wechat_cs.egg-info/dependency_links.txt
+writing entry points to src/wechat_cs.egg-info/entry_points.txt
+writing requirements to src/wechat_cs.egg-info/requires.txt
+writing top-level names to src/wechat_cs.egg-info/top_level.txt
+reading manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+installing to build/bdist.macosx-11.0-arm64/wheel
+running install
+running install_lib
+creating build/bdist.macosx-11.0-arm64/wheel
+creating build/bdist.macosx-11.0-arm64/wheel/wechat_cs
+copying build/lib/wechat_cs/replies.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/config.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/models.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/knowledge_answer.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/knowledge_cli.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/policy.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+creating build/bdist.macosx-11.0-arm64/wheel/wechat_cs/schemas
+copying build/lib/wechat_cs/schemas/answer_draft.schema.json -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs/schemas
+copying build/lib/wechat_cs/schemas/evidence.schema.json -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs/schemas
+creating build/bdist.macosx-11.0-arm64/wheel/wechat_cs/adapters
+copying build/lib/wechat_cs/adapters/fake.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs/adapters
+copying build/lib/wechat_cs/adapters/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs/adapters
+copying build/lib/wechat_cs/adapters/wxauto_adapter.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs/adapters
+copying build/lib/wechat_cs/engine.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/cli.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/locking.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/storage.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/delta.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/knowledge.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/__main__.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/knowledge_sources.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+running install_egg_info
+Copying src/wechat_cs.egg-info to build/bdist.macosx-11.0-arm64/wheel/./wechat_cs-0.1.0-py3.11.egg-info
+running install_scripts
+creating build/bdist.macosx-11.0-arm64/wheel/wechat_cs-0.1.0.dist-info/WHEEL
+creating '/private/tmp/wechat-phase2-wheel/.tmp-291ynidh/wechat_cs-0.1.0-py3-none-any.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+adding 'wechat_cs/__init__.py'
+adding 'wechat_cs/__main__.py'
+adding 'wechat_cs/cli.py'
+adding 'wechat_cs/config.py'
+adding 'wechat_cs/delta.py'
+adding 'wechat_cs/engine.py'
+adding 'wechat_cs/knowledge.py'
+adding 'wechat_cs/knowledge_answer.py'
+adding 'wechat_cs/knowledge_cli.py'
+adding 'wechat_cs/knowledge_sources.py'
+adding 'wechat_cs/locking.py'
+adding 'wechat_cs/models.py'
+adding 'wechat_cs/policy.py'
+adding 'wechat_cs/replies.py'
+adding 'wechat_cs/storage.py'
+adding 'wechat_cs/adapters/__init__.py'
+adding 'wechat_cs/adapters/fake.py'
+adding 'wechat_cs/adapters/wxauto_adapter.py'
+adding 'wechat_cs/schemas/answer_draft.schema.json'
+adding 'wechat_cs/schemas/evidence.schema.json'
+adding 'wechat_cs-0.1.0.dist-info/METADATA'
+adding 'wechat_cs-0.1.0.dist-info/WHEEL'
+adding 'wechat_cs-0.1.0.dist-info/entry_points.txt'
+adding 'wechat_cs-0.1.0.dist-info/top_level.txt'
+adding 'wechat_cs-0.1.0.dist-info/RECORD'
+removing build/bdist.macosx-11.0-arm64/wheel
+Successfully built /private/tmp/wechat-phase2-wheel/wechat_cs-0.1.0-py3-none-any.whl

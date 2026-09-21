@@ -1,0 +1,19 @@
+........................................................................ [ 34%]
+........................................................................ [ 69%]
+..............................................................           [100%]
+- generated xml file: /Users/luxingwen/workspace/code/wechat-ai-customer-service/reports/junit.xml -
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.11.15-final-0 _______________
+
+Name                       Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------
+src/wechat_cs/delta.py        35      1     12      1    96%   25
+src/wechat_cs/engine.py      137      3     50      1    98%   138-139, 191
+src/wechat_cs/policy.py       24      0      8      0   100%
+src/wechat_cs/replies.py      96      2     52      2    97%   112, 147
+src/wechat_cs/storage.py     154      1     44      2    98%   14->16, 205
+----------------------------------------------------------------------
+TOTAL                        446      7    166      6    98%
+Coverage JSON written to file reports/coverage-core.json
+Required test coverage of 85.0% reached. Total coverage: 97.88%
+206 passed in 2.89s

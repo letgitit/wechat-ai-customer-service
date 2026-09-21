@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "command": "uv build --offline --wheel --python .venv/bin/python --out-dir /private/tmp/wechat-phase2-wheel",
+  "schemas": [
+    "wechat_cs/schemas/answer_draft.schema.json",
+    "wechat_cs/schemas/evidence.schema.json"
+  ],
+  "limitations": "Earlier pip/no-build-isolation attempts failed because pip/setuptools absent from runtime venv; isolated cached build succeeded. No publish.",
+  "verified_at": "2026-09-21T06:36:46.935269+00:00",
+  "sha256": "b1d4bae0c091d91e64b4349c28d5ce3def935698afc86f86aefcd5e1d039d486",
+  "exit_code": 0
+}

@@ -14,7 +14,7 @@ from .engine import Engine
 from .locking import instance_lock
 from .models import MessageObservation, stamp, utcnow
 from .policy import Authorization
-from .replies import Replies
+from .replies import reply_provider
 from .storage import Store
 
 
@@ -68,6 +68,9 @@ def parser():
         if name != "list":
             cmd.add_argument("task_id")
         cmd.add_argument("--db", default=Config().database)
+    from .knowledge_cli import add_commands
+
+    add_commands(sub)
     return p
 
 
@@ -154,7 +157,7 @@ def run(c, args):
     ):
         raise ValueError("SEND_NOT_AUTHORIZED; 需要配置开关、--allow-send 和精确 --confirm-target")
     # 模型权限校验先于 GUI 初始化。
-    replies = Replies(c, allow_llm=auth.allow_llm)
+    replies = reply_provider(c, allow_llm=auth.allow_llm)
     duration = min(c.run_duration_seconds, auth.duration_seconds or c.run_duration_seconds)
     with instance_lock(c.adapter, c.database) as lock:
         s = Store(c.database)
@@ -248,6 +251,10 @@ def main(argv=None):
                 emit(diagnostic(c), args.report)
             else:
                 run(c, args)
+        elif args.command in {"kb", "answer", "eval"}:
+            from .knowledge_cli import execute
+
+            emit(execute(args), args.report)
         elif args.command == "demo":
             emit(demo(args.scenario), args.report)
         else:

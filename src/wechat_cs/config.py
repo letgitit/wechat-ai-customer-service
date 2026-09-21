@@ -7,6 +7,8 @@ from urllib.parse import urlsplit
 
 @dataclass(frozen=True)
 class Config:
+    knowledge_enabled: bool = False
+    knowledge_config: str = ""
     adapter: str = "mock"
     send_mode: str = "dry_run"
     reply_engine: str = "fixed"
@@ -108,11 +110,20 @@ def load_config(path: str | Path | None) -> Config:
     values = {}
     allowed = {f.name for f in fields(Config)}
     for section, items in data.items():
-        if section not in {"app", "wechat", "service", "safety", "llm"} or not isinstance(
-            items, dict
-        ):
+        if section not in {
+            "app",
+            "wechat",
+            "service",
+            "safety",
+            "llm",
+            "knowledge",
+        } or not isinstance(items, dict):
             raise ValueError("未知配置分组")
         for key, value in items.items():
+            if section == "knowledge":
+                key = {"enabled": "knowledge_enabled", "config_path": "knowledge_config"}.get(
+                    key, key
+                )
             if key not in allowed or key in values:
                 raise ValueError(f"未知或重复配置: {key}")
             values[key] = value
