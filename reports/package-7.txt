@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "channel": "FAKE_ONLY",
+  "time": "2026-09-20T05:39:43.610592+00:00",
+  "events": 1,
+  "tasks": 1,
+  "simulated_send_calls": 1,
+  "states": [
+    "OBSERVED_SENT"
+  ],
+  "real_send_calls": 0,
+  "external_llm_calls": 0,
+  "windows": "NOT_RUN"
+}

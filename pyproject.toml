@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wechat-cs"
+version = "0.1.0"
+description = "单测试群、默认离线的微信 AI 客服试验程序"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = ["httpx==0.28.1", "filelock==3.20.3"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2", "pytest-cov==6.3.0", "ruff==0.13.2"]
+wechat = ["wxauto4==41.1.7; sys_platform == 'win32'"]
+
+[project.scripts]
+wechat-cs = "wechat_cs.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = '-m "not live_wechat and not live_llm"'
+markers = ["live_wechat: requires separate GUI authorization", "live_llm: requires separate model authorization"]
+
+[tool.coverage.run]
+branch = true
+source = ["wechat_cs.delta", "wechat_cs.policy", "wechat_cs.engine", "wechat_cs.storage", "wechat_cs.replies"]
+
+[tool.coverage.report]
+fail_under = 85
+show_missing = true
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

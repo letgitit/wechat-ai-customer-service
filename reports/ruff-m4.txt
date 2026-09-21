@@ -1,0 +1,44 @@
+B008 Do not perform function call `Authorization` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+  --> src/wechat_cs/engine.py:20:14
+   |
+18 |         store: Store,
+19 |         *,
+20 |         auth=Authorization(),
+   |              ^^^^^^^^^^^^^^^
+21 |         replies=None,
+22 |         clock=utcnow,
+   |
+
+E501 Line too long (101 > 100)
+  --> src/wechat_cs/storage.py:32:101
+   |
+30 |           UNIQUE(binding_id, binding_epoch, ui_id));
+31 |         CREATE TABLE IF NOT EXISTS reply_task (
+32 |           task_id TEXT PRIMARY KEY, event_id TEXT NOT NULL UNIQUE REFERENCES message_event(event_id),
+   |                                                                                                     ^
+33 |           engine TEXT NOT NULL, answer TEXT NOT NULL DEFAULT '', source_ids TEXT NOT NULL DEFAULT '[]',
+34 |           needs_review INTEGER NOT NULL DEFAULT 1, status TEXT NOT NULL,
+   |
+
+E501 Line too long (103 > 100)
+  --> src/wechat_cs/storage.py:33:101
+   |
+31 |         CREATE TABLE IF NOT EXISTS reply_task (
+32 |           task_id TEXT PRIMARY KEY, event_id TEXT NOT NULL UNIQUE REFERENCES message_event(event_id),
+33 |           engine TEXT NOT NULL, answer TEXT NOT NULL DEFAULT '', source_ids TEXT NOT NULL DEFAULT '[]',
+   |                                                                                                     ^^^
+34 |           needs_review INTEGER NOT NULL DEFAULT 1, status TEXT NOT NULL,
+35 |           generation INTEGER NOT NULL, run_id TEXT NOT NULL, binding_epoch TEXT NOT NULL,
+   |
+
+E501 Line too long (104 > 100)
+  --> src/wechat_cs/storage.py:40:101
+   |
+38 |         CREATE TABLE IF NOT EXISTS audit_event (
+39 |           id INTEGER PRIMARY KEY, time TEXT NOT NULL, event_type TEXT NOT NULL, task_id TEXT,
+40 |           binding_id TEXT NOT NULL, reason TEXT NOT NULL, metadata_redacted TEXT NOT NULL DEFAULT '{}');
+   |                                                                                                     ^^^^
+41 |         """)
+   |
+
+Found 4 errors.

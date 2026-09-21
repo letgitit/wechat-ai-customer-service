@@ -1,0 +1,48 @@
+# 这是待实现程序的配置契约，不是已可运行软件的配置。
+# 复制成 config.local.toml 后修改；真实配置和密钥不得提交。
+
+[app]
+adapter = "mock"                 # mock | wxauto
+send_mode = "dry_run"            # dry_run | manual | auto
+reply_engine = "fixed"           # fixed | faq | llm
+runtime_dir = ".runtime"
+database = ".runtime/wechat_cs.sqlite3"
+log_level = "INFO"
+
+[wechat]
+binding_id = "local-test-001"    # 自定义绑定，不是微信官方群 ID
+target_group = ""               # 实机必填；人工核验唯一名称的内部测试群
+expected_chat_type = "group"
+poll_interval_seconds = 2.0      # 项目默认值，不是消息到达时延保证
+snapshot_limit = 200
+
+[service]
+trigger_prefix = "#客服"
+max_question_chars = 1000
+max_reply_chars = 500
+reply_prefix = "[AI测试]"
+fixed_reply = "已收到。这是固定回复连通测试，不代表产品问题的正式解答。"
+faq_path = "examples/faq.json"
+question_mode = "independent"   # 首版各问题独立，不用昵称拼接长期记忆
+
+[safety]
+allow_send = false               # 仍须 CLI --allow-send + --confirm-target 才能真实发送
+max_sends_per_run = 3
+run_duration_seconds = 300
+min_send_interval_seconds = 5.0 # 负载/防误发控制，不是反风控或账号安全承诺
+reply_ttl_seconds = 120
+require_manual_review_for_llm = true
+max_pending_tasks = 50
+send_retry_count = 0
+retention_days = 7
+
+[llm]
+endpoint = ""                   # 完整 chat/completions 类接口 URL，按实际提供方核实
+model = ""
+api_key_env = "WECHAT_CS_LLM_API_KEY"
+allow_external_calls = false
+connect_timeout_seconds = 5.0
+request_deadline_seconds = 30.0
+max_response_bytes = 131072
+max_tokens = 500
+retry_count = 0

@@ -1,0 +1,154 @@
+Building source distribution...
+running egg_info
+writing src/wechat_cs.egg-info/PKG-INFO
+writing dependency_links to src/wechat_cs.egg-info/dependency_links.txt
+writing entry points to src/wechat_cs.egg-info/entry_points.txt
+writing requirements to src/wechat_cs.egg-info/requires.txt
+writing top-level names to src/wechat_cs.egg-info/top_level.txt
+reading manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+running sdist
+running egg_info
+writing src/wechat_cs.egg-info/PKG-INFO
+writing dependency_links to src/wechat_cs.egg-info/dependency_links.txt
+writing entry points to src/wechat_cs.egg-info/entry_points.txt
+writing requirements to src/wechat_cs.egg-info/requires.txt
+writing top-level names to src/wechat_cs.egg-info/top_level.txt
+reading manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+running check
+creating wechat_cs-0.1.0
+creating wechat_cs-0.1.0/examples
+creating wechat_cs-0.1.0/examples/scenarios
+creating wechat_cs-0.1.0/scripts
+creating wechat_cs-0.1.0/src/wechat_cs
+creating wechat_cs-0.1.0/src/wechat_cs.egg-info
+creating wechat_cs-0.1.0/src/wechat_cs/adapters
+creating wechat_cs-0.1.0/tests
+copying files to wechat_cs-0.1.0...
+copying MANIFEST.in -> wechat_cs-0.1.0
+copying README.md -> wechat_cs-0.1.0
+copying config.example.toml -> wechat_cs-0.1.0
+copying pyproject.toml -> wechat_cs-0.1.0
+copying requirements.lock -> wechat_cs-0.1.0
+copying uv.lock -> wechat_cs-0.1.0
+copying examples/faq.json -> wechat_cs-0.1.0/examples
+copying examples/scenarios/basic.json -> wechat_cs-0.1.0/examples/scenarios
+copying scripts/qa.py -> wechat_cs-0.1.0/scripts
+copying scripts/validate_windows.ps1 -> wechat_cs-0.1.0/scripts
+copying src/wechat_cs/__init__.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/__main__.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/cli.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/config.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/delta.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/engine.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/locking.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/models.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/policy.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/replies.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs/storage.py -> wechat_cs-0.1.0/src/wechat_cs
+copying src/wechat_cs.egg-info/PKG-INFO -> wechat_cs-0.1.0/src/wechat_cs.egg-info
+copying src/wechat_cs.egg-info/SOURCES.txt -> wechat_cs-0.1.0/src/wechat_cs.egg-info
+copying src/wechat_cs.egg-info/dependency_links.txt -> wechat_cs-0.1.0/src/wechat_cs.egg-info
+copying src/wechat_cs.egg-info/entry_points.txt -> wechat_cs-0.1.0/src/wechat_cs.egg-info
+copying src/wechat_cs.egg-info/requires.txt -> wechat_cs-0.1.0/src/wechat_cs.egg-info
+copying src/wechat_cs.egg-info/top_level.txt -> wechat_cs-0.1.0/src/wechat_cs.egg-info
+copying src/wechat_cs/adapters/__init__.py -> wechat_cs-0.1.0/src/wechat_cs/adapters
+copying src/wechat_cs/adapters/fake.py -> wechat_cs-0.1.0/src/wechat_cs/adapters
+copying src/wechat_cs/adapters/wxauto_adapter.py -> wechat_cs-0.1.0/src/wechat_cs/adapters
+copying tests/conftest.py -> wechat_cs-0.1.0/tests
+copying tests/test_m0.py -> wechat_cs-0.1.0/tests
+copying tests/test_m1.py -> wechat_cs-0.1.0/tests
+copying tests/test_m2.py -> wechat_cs-0.1.0/tests
+copying tests/test_m3.py -> wechat_cs-0.1.0/tests
+copying tests/test_m4.py -> wechat_cs-0.1.0/tests
+Writing wechat_cs-0.1.0/setup.cfg
+Creating tar archive
+removing 'wechat_cs-0.1.0' (and everything under it)
+Building wheel from source distribution...
+running egg_info
+writing src/wechat_cs.egg-info/PKG-INFO
+writing dependency_links to src/wechat_cs.egg-info/dependency_links.txt
+writing entry points to src/wechat_cs.egg-info/entry_points.txt
+writing requirements to src/wechat_cs.egg-info/requires.txt
+writing top-level names to src/wechat_cs.egg-info/top_level.txt
+reading manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+running bdist_wheel
+running build
+running build_py
+creating build/lib/wechat_cs
+copying src/wechat_cs/replies.py -> build/lib/wechat_cs
+copying src/wechat_cs/config.py -> build/lib/wechat_cs
+copying src/wechat_cs/models.py -> build/lib/wechat_cs
+copying src/wechat_cs/policy.py -> build/lib/wechat_cs
+copying src/wechat_cs/__init__.py -> build/lib/wechat_cs
+copying src/wechat_cs/engine.py -> build/lib/wechat_cs
+copying src/wechat_cs/cli.py -> build/lib/wechat_cs
+copying src/wechat_cs/locking.py -> build/lib/wechat_cs
+copying src/wechat_cs/storage.py -> build/lib/wechat_cs
+copying src/wechat_cs/delta.py -> build/lib/wechat_cs
+copying src/wechat_cs/__main__.py -> build/lib/wechat_cs
+creating build/lib/wechat_cs/adapters
+copying src/wechat_cs/adapters/fake.py -> build/lib/wechat_cs/adapters
+copying src/wechat_cs/adapters/__init__.py -> build/lib/wechat_cs/adapters
+copying src/wechat_cs/adapters/wxauto_adapter.py -> build/lib/wechat_cs/adapters
+running egg_info
+writing src/wechat_cs.egg-info/PKG-INFO
+writing dependency_links to src/wechat_cs.egg-info/dependency_links.txt
+writing entry points to src/wechat_cs.egg-info/entry_points.txt
+writing requirements to src/wechat_cs.egg-info/requires.txt
+writing top-level names to src/wechat_cs.egg-info/top_level.txt
+reading manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src/wechat_cs.egg-info/SOURCES.txt'
+installing to build/bdist.macosx-11.0-arm64/wheel
+running install
+running install_lib
+creating build/bdist.macosx-11.0-arm64/wheel
+creating build/bdist.macosx-11.0-arm64/wheel/wechat_cs
+copying build/lib/wechat_cs/replies.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/config.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/models.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/policy.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+creating build/bdist.macosx-11.0-arm64/wheel/wechat_cs/adapters
+copying build/lib/wechat_cs/adapters/fake.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs/adapters
+copying build/lib/wechat_cs/adapters/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs/adapters
+copying build/lib/wechat_cs/adapters/wxauto_adapter.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs/adapters
+copying build/lib/wechat_cs/engine.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/cli.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/locking.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/storage.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/delta.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+copying build/lib/wechat_cs/__main__.py -> build/bdist.macosx-11.0-arm64/wheel/./wechat_cs
+running install_egg_info
+Copying src/wechat_cs.egg-info to build/bdist.macosx-11.0-arm64/wheel/./wechat_cs-0.1.0-py3.11.egg-info
+running install_scripts
+creating build/bdist.macosx-11.0-arm64/wheel/wechat_cs-0.1.0.dist-info/WHEEL
+creating '/private/tmp/wechat-cs-dist/.tmp-ah5xd2e7/wechat_cs-0.1.0-py3-none-any.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+adding 'wechat_cs/__init__.py'
+adding 'wechat_cs/__main__.py'
+adding 'wechat_cs/cli.py'
+adding 'wechat_cs/config.py'
+adding 'wechat_cs/delta.py'
+adding 'wechat_cs/engine.py'
+adding 'wechat_cs/locking.py'
+adding 'wechat_cs/models.py'
+adding 'wechat_cs/policy.py'
+adding 'wechat_cs/replies.py'
+adding 'wechat_cs/storage.py'
+adding 'wechat_cs/adapters/__init__.py'
+adding 'wechat_cs/adapters/fake.py'
+adding 'wechat_cs/adapters/wxauto_adapter.py'
+adding 'wechat_cs-0.1.0.dist-info/METADATA'
+adding 'wechat_cs-0.1.0.dist-info/WHEEL'
+adding 'wechat_cs-0.1.0.dist-info/entry_points.txt'
+adding 'wechat_cs-0.1.0.dist-info/top_level.txt'
+adding 'wechat_cs-0.1.0.dist-info/RECORD'
+removing build/bdist.macosx-11.0-arm64/wheel
+Successfully built /private/tmp/wechat-cs-dist/wechat_cs-0.1.0.tar.gz
+Successfully built /private/tmp/wechat-cs-dist/wechat_cs-0.1.0-py3-none-any.whl

@@ -1,0 +1,5 @@
+Using Python 3.11.15 environment at: /private/tmp/wechat-wheel-final-7z7qrmnh/venv
+Resolved 1 package in 0.64ms
+Prepared 1 package in 2ms
+Installed 1 package in 1ms
+ + wechat-cs==0.1.0 (from file:///private/tmp/wechat-cs-dist/wechat_cs-0.1.0-py3-none-any.whl)

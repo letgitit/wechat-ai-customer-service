@@ -1,0 +1,11 @@
+{
+  "description": "合成测试数据；Fake 虚拟通道，不触碰微信",
+  "frames": [
+    [{"ui_id":"old","attr":"friend","type":"text","sender_display":"合成成员","content":"#客服 历史问题"}],
+    [{"ui_id":"old","attr":"friend","type":"text","sender_display":"合成成员","content":"#客服 历史问题"},
+     {"ui_id":"new","attr":"friend","type":"text","sender_display":"合成成员","content":"#客服 连通测试"},
+     {"ui_id":"self","attr":"self","type":"text","sender_display":"同昵称","content":"#客服 自己的消息"}]
+  ],
+  "expected_events": 1,
+  "expected_sends": 1
+}

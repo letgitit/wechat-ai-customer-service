@@ -1,0 +1,4 @@
+include README.md config.example.toml requirements.lock uv.lock
+recursive-include examples *.json
+recursive-include scripts *.py *.ps1
+recursive-include tests *.py

@@ -1,0 +1,12 @@
+............................................                             [100%]
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.11.15-final-0 _______________
+
+Name                                       Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------------------------------
+src/wechat_cs/adapters/wxauto_adapter.py     105      9     38      3    89%   50-57, 96, 124
+--------------------------------------------------------------------------------------
+TOTAL                                        105      9     38      3    89%
+Coverage JSON written to file reports/coverage-adapter.json
+Required test coverage of 85.0% reached. Total coverage: 88.81%
+44 passed in 1.28s

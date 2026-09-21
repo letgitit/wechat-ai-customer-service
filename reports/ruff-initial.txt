@@ -1,0 +1,280 @@
+E501 Line too long (102 > 100)
+  --> src/wechat_cs/cli.py:54:85
+   |
+52 |             cmd.add_argument("--max-sends", type=positive)
+53 |             cmd.add_argument("--duration-seconds", type=positive)
+54 |             cmd.add_argument("--rebind", action="store_true", help="停止旧进程后，人工核验目标并重绑")
+   |                                                                                                     ^^
+55 |     demo = sub.add_parser("demo")
+56 |     demo.add_argument("--scenario", default="examples/scenarios/basic.json")
+   |
+
+E501 Line too long (101 > 100)
+  --> src/wechat_cs/cli.py:89:101
+   |
+87 |             a.connect()
+88 |             snapshot = a.snapshot()
+89 |             data["group_verified"] = snapshot.chat_type == "group" and snapshot.chat_name == c.target
+   |                                                                                                     ^
+90 |             data["wxauto4"] = getattr(a, "package_version", "NOT_INSTALLED_OR_USED")
+91 |             data["message_count"] = len(snapshot.messages)
+   |
+
+E501 Line too long (102 > 100)
+   --> src/wechat_cs/cli.py:109:101
+    |
+107 |                 raise ValueError("EMPTY_SCENARIO")
+108 |             for i, frame in enumerate(frames):
+109 |                 a.current = replace(a.current, messages=tuple(MessageObservation(**m) for m in frame))
+    |                                                                                                     ^^
+110 |                 if i == 0:
+111 |                     e.start()
+    |
+
+B008 Do not perform function call `Authorization` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+  --> src/wechat_cs/engine.py:14:71
+   |
+13 | class Engine:
+14 |     def __init__(self, config: Config, adapter, store: Store, *, auth=Authorization(),
+   |                                                                       ^^^^^^^^^^^^^^^
+15 |                  replies=None, clock=utcnow, lock_valid=lambda: True):
+16 |         self.config, self.adapter, self.store = config, adapter, store
+   |
+
+E501 Line too long (101 > 100)
+  --> src/wechat_cs/replies.py:18:101
+   |
+17 | class Replies:
+18 |     def __init__(self, config: Config, *, allow_llm=False, transport=None, monotonic=time.monotonic):
+   |                                                                                                     ^
+19 |         self.config = config
+20 |         self.transport = transport
+   |
+
+E501 Line too long (111 > 100)
+  --> src/wechat_cs/replies.py:49:101
+   |
+47 |         if not question:
+48 |             return ReplyDraft("请在 #客服 后补充您的问题。")
+49 |         if len(question) > c.max_question_chars or any(ord(ch) < 32 and ch not in "\n\t\r" for ch in question):
+   |                                                                                                     ^^^^^^^^^^^
+50 |             return ReplyDraft("", needs_review=True, reason="INVALID_QUESTION")
+51 |         if c.reply_engine == "fixed":
+   |
+
+E501 Line too long (101 > 100)
+  --> src/wechat_cs/storage.py:32:101
+   |
+30 |           UNIQUE(binding_id, binding_epoch, ui_id));
+31 |         CREATE TABLE IF NOT EXISTS reply_task (
+32 |           task_id TEXT PRIMARY KEY, event_id TEXT NOT NULL UNIQUE REFERENCES message_event(event_id),
+   |                                                                                                     ^
+33 |           engine TEXT NOT NULL, answer TEXT NOT NULL DEFAULT '', source_ids TEXT NOT NULL DEFAULT '[]',
+34 |           needs_review INTEGER NOT NULL DEFAULT 1, status TEXT NOT NULL,
+   |
+
+E501 Line too long (103 > 100)
+  --> src/wechat_cs/storage.py:33:101
+   |
+31 |         CREATE TABLE IF NOT EXISTS reply_task (
+32 |           task_id TEXT PRIMARY KEY, event_id TEXT NOT NULL UNIQUE REFERENCES message_event(event_id),
+33 |           engine TEXT NOT NULL, answer TEXT NOT NULL DEFAULT '', source_ids TEXT NOT NULL DEFAULT '[]',
+   |                                                                                                     ^^^
+34 |           needs_review INTEGER NOT NULL DEFAULT 1, status TEXT NOT NULL,
+35 |           generation INTEGER NOT NULL, run_id TEXT NOT NULL, binding_epoch TEXT NOT NULL,
+   |
+
+E501 Line too long (104 > 100)
+  --> src/wechat_cs/storage.py:40:101
+   |
+38 |         CREATE TABLE IF NOT EXISTS audit_event (
+39 |           id INTEGER PRIMARY KEY, time TEXT NOT NULL, event_type TEXT NOT NULL, task_id TEXT,
+40 |           binding_id TEXT NOT NULL, reason TEXT NOT NULL, metadata_redacted TEXT NOT NULL DEFAULT '{}');
+   |                                                                                                     ^^^^
+41 |         """)
+   |
+
+E501 Line too long (101 > 100)
+  --> src/wechat_cs/storage.py:92:101
+   |
+90 |                 self.audit("REJECT", reason="QUEUE_FULL")
+91 |                 return None
+92 |             cursor = self.db.execute("INSERT OR IGNORE INTO message_event VALUES(?,?,?,?,?,?,?,?)", (
+   |                                                                                                     ^
+93 |                 event_id, snapshot.binding_id, snapshot.binding_epoch, message.ui_id,
+94 |                 message.sender_display, text, stamp(message.observed_at), "GENERATING"))
+   |
+
+E501 Line too long (102 > 100)
+   --> src/wechat_cs/storage.py:98:101
+    |
+ 96 |                 return None
+ 97 |             task_id = uuid4().hex
+ 98 |             self.db.execute("INSERT INTO reply_task(task_id,event_id,engine,status,generation,run_id,"
+    |                                                                                                     ^^
+ 99 |                             "binding_epoch,created_at,expires_at) VALUES(?,?,?,'GENERATING',?,?,?,?,?)",
+100 |                             (task_id, event_id, engine, state["generation"], state["run_id"],
+    |
+
+E501 Line too long (104 > 100)
+   --> src/wechat_cs/storage.py:99:101
+    |
+ 97 |             task_id = uuid4().hex
+ 98 |             self.db.execute("INSERT INTO reply_task(task_id,event_id,engine,status,generation,run_id,"
+ 99 |                             "binding_epoch,created_at,expires_at) VALUES(?,?,?,'GENERATING',?,?,?,?,?)",
+    |                                                                                                     ^^^^
+100 |                             (task_id, event_id, engine, state["generation"], state["run_id"],
+101 |                              snapshot.binding_epoch, stamp(self.clock()),
+    |
+
+E501 Line too long (102 > 100)
+   --> src/wechat_cs/storage.py:128:101
+    |
+126 |                                 draft.text, json.dumps(draft.source_ids), draft.needs_review,
+127 |                                 status, draft.reason, task_id))
+128 |             self.db.execute("UPDATE message_event SET processing_status='PROCESSED' WHERE event_id=?",
+    |                                                                                                     ^^
+129 |                             (task["event_id"],))
+130 |             self.audit(status, task_id, draft.reason)
+    |
+
+E501 Line too long (103 > 100)
+   --> src/wechat_cs/storage.py:149:101
+    |
+147 |             if state["paused"] and state["pause_reason"] != "MANUAL":
+148 |                 reason = state["pause_reason"]
+149 |             self.db.execute("UPDATE runtime_state SET paused=1,pause_reason=?,generation=generation+1",
+    |                                                                                                     ^^^
+150 |                             (reason,))
+151 |             self.db.execute("UPDATE reply_task SET status='CANCELLED',error_code=? WHERE status IN "
+    |
+
+E501 Line too long (110 > 100)
+   --> src/wechat_cs/storage.py:153:101
+    |
+151 |             self.db.execute("UPDATE reply_task SET status='CANCELLED',error_code=? WHERE status IN "
+152 |                             "('GENERATING','DRAFT','READY')", (reason,))
+153 |             inflight = self.db.execute("SELECT count(*) FROM reply_task WHERE status='SENDING'").fetchone()[0]
+    |                                                                                                     ^^^^^^^^^^
+154 |             self.audit("PAUSE", reason=reason)
+155 |             return inflight
+    |
+
+E501 Line too long (104 > 100)
+   --> src/wechat_cs/storage.py:162:101
+    |
+160 |             if not state or not state["paused"] or state["pause_reason"] != "MANUAL":
+161 |                 raise ValueError("RESUME_REQUIRES_MANUAL_PAUSE; 安全暂停需人工确认后重新绑定")
+162 |             self.db.execute("UPDATE runtime_state SET paused=0,pause_reason='',generation=generation+1")
+    |                                                                                                     ^^^^
+163 |             self.audit("RESUME", reason="BASELINE_REQUIRED")
+    |
+
+E501 Line too long (104 > 100)
+   --> src/wechat_cs/storage.py:170:101
+    |
+168 |             if not state or not state["paused"]:
+169 |                 raise ValueError("REBIND_REQUIRES_PAUSE")
+170 |             self.db.execute("UPDATE runtime_state SET paused=0,pause_reason='',generation=generation+1")
+    |                                                                                                     ^^^^
+171 |             self.audit("REBIND", reason="OPERATOR_CONFIRMED")
+    |
+
+E501 Line too long (110 > 100)
+   --> src/wechat_cs/storage.py:182:101
+    |
+180 |             ):
+181 |                 raise ValueError("STALE_TASK_REQUIRES_MANUAL_HANDLING")
+182 |             self.db.execute("UPDATE reply_task SET status='READY',needs_review=0 WHERE task_id=?", (task_id,))
+    |                                                                                                     ^^^^^^^^^^
+183 |             self.audit("APPROVE", task_id)
+    |
+
+E501 Line too long (107 > 100)
+   --> src/wechat_cs/storage.py:186:101
+    |
+185 |     def attempts(self):
+186 |         return self.db.execute("SELECT count(*) FROM audit_event WHERE event_type='SENDING'").fetchone()[0]
+    |                                                                                                     ^^^^^^^
+187 |
+188 |     def claim(self, task_id, budget, interval):
+    |
+
+E501 Line too long (122 > 100)
+   --> src/wechat_cs/storage.py:196:101
+    |
+194 |                 s["run_id"], s["generation"], s["binding_epoch"]
+195 |             ):
+196 |                 self.db.execute("UPDATE reply_task SET status='CANCELLED',error_code='STALE' WHERE task_id=?", (task_id,))
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^
+197 |                 return False
+198 |             now = stamp(self.clock())
+    |
+
+E501 Line too long (101 > 100)
+   --> src/wechat_cs/storage.py:200:101
+    |
+198 |             now = stamp(self.clock())
+199 |             if t["expires_at"] <= now:
+200 |                 self.db.execute("UPDATE reply_task SET status='EXPIRED' WHERE task_id=?", (task_id,))
+    |                                                                                                     ^
+201 |                 return False
+202 |             last = self.db.execute("SELECT max(time) FROM audit_event WHERE event_type='SENDING'").fetchone()[0]
+    |
+
+E501 Line too long (112 > 100)
+   --> src/wechat_cs/storage.py:202:101
+    |
+200 |                 self.db.execute("UPDATE reply_task SET status='EXPIRED' WHERE task_id=?", (task_id,))
+201 |                 return False
+202 |             last = self.db.execute("SELECT max(time) FROM audit_event WHERE event_type='SENDING'").fetchone()[0]
+    |                                                                                                     ^^^^^^^^^^^^
+203 |             if self.attempts() >= budget or (last and last > stamp(self.clock() - timedelta(seconds=interval))):
+204 |                 return False
+    |
+
+E501 Line too long (112 > 100)
+   --> src/wechat_cs/storage.py:203:101
+    |
+201 |                 return False
+202 |             last = self.db.execute("SELECT max(time) FROM audit_event WHERE event_type='SENDING'").fetchone()[0]
+203 |             if self.attempts() >= budget or (last and last > stamp(self.clock() - timedelta(seconds=interval))):
+    |                                                                                                     ^^^^^^^^^^^^
+204 |                 return False
+205 |             self.db.execute("UPDATE reply_task SET status='SENDING',attempt_started_at=? WHERE task_id=?", (now, task_id))
+    |
+
+E501 Line too long (122 > 100)
+   --> src/wechat_cs/storage.py:205:101
+    |
+203 |             if self.attempts() >= budget or (last and last > stamp(self.clock() - timedelta(seconds=interval))):
+204 |                 return False
+205 |             self.db.execute("UPDATE reply_task SET status='SENDING',attempt_started_at=? WHERE task_id=?", (now, task_id))
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^
+206 |             self.audit("SENDING", task_id)
+207 |             return True
+    |
+
+E501 Line too long (112 > 100)
+   --> src/wechat_cs/storage.py:230:101
+    |
+228 |                 (stamp(self.clock() - timedelta(days=days)),))]
+229 |             for event_id in ids:
+230 |                 self.db.execute("UPDATE reply_task SET answer='',source_ids='[]' WHERE event_id=?", (event_id,))
+    |                                                                                                     ^^^^^^^^^^^^
+231 |                 self.db.execute("UPDATE message_event SET sender_display='',question='' WHERE event_id=?", (event_id,))
+232 |             self.audit("CLEANUP", reason="CONTENT_REDACTED")
+    |
+
+E501 Line too long (119 > 100)
+   --> src/wechat_cs/storage.py:231:101
+    |
+229 |             for event_id in ids:
+230 |                 self.db.execute("UPDATE reply_task SET answer='',source_ids='[]' WHERE event_id=?", (event_id,))
+231 |                 self.db.execute("UPDATE message_event SET sender_display='',question='' WHERE event_id=?", (event_id,))
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^
+232 |             self.audit("CLEANUP", reason="CONTENT_REDACTED")
+233 |             return len(ids)
+    |
+
+Found 28 errors (2 fixed, 26 remaining).

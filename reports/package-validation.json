@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--locked",
+        "--extra",
+        "dev",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "time": "2026-09-20T05:39:42.828686+00:00",
+      "evidence": "reports/package-1.txt"
+    },
+    {
+      "command": [
+        "uv",
+        "build",
+        "--offline",
+        "--out-dir",
+        "/private/tmp/wechat-cs-dist"
+      ],
+      "exit_code": 0,
+      "time": "2026-09-20T05:39:43.422382+00:00",
+      "evidence": "reports/package-2.txt"
+    },
+    {
+      "command": [
+        "uv",
+        "venv",
+        "--python",
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/.venv/bin/python",
+        "/private/tmp/wechat-wheel-final-7z7qrmnh/venv"
+      ],
+      "exit_code": 0,
+      "time": "2026-09-20T05:39:43.429960+00:00",
+      "evidence": "reports/package-3.txt"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--offline",
+        "--python",
+        "/private/tmp/wechat-wheel-final-7z7qrmnh/venv/bin/python",
+        "--require-hashes",
+        "-r",
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/requirements.lock"
+      ],
+      "exit_code": 0,
+      "time": "2026-09-20T05:39:43.469178+00:00",
+      "evidence": "reports/package-4.txt"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--offline",
+        "--python",
+        "/private/tmp/wechat-wheel-final-7z7qrmnh/venv/bin/python",
+        "--no-deps",
+        "/private/tmp/wechat-cs-dist/wechat_cs-0.1.0-py3-none-any.whl"
+      ],
+      "exit_code": 0,
+      "time": "2026-09-20T05:39:43.482473+00:00",
+      "evidence": "reports/package-5.txt"
+    },
+    {
+      "command": [
+        "/private/tmp/wechat-wheel-final-7z7qrmnh/venv/bin/python",
+        "-m",
+        "wechat_cs",
+        "doctor",
+        "--adapter",
+        "mock"
+      ],
+      "exit_code": 0,
+      "time": "2026-09-20T05:39:43.565601+00:00",
+      "evidence": "reports/package-6.txt"
+    },
+    {
+      "command": [
+        "/private/tmp/wechat-wheel-final-7z7qrmnh/venv/bin/python",
+        "-m",
+        "wechat_cs",
+        "demo",
+        "--scenario",
+        "/Users/luxingwen/workspace/code/wechat-ai-customer-service/examples/scenarios/basic.json"
+      ],
+      "exit_code": 0,
+      "time": "2026-09-20T05:39:43.618218+00:00",
+      "evidence": "reports/package-7.txt"
+    }
+  ]
+}

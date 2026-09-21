@@ -1,0 +1,54 @@
+........................................................................ [ 53%]
+................................................F.............           [100%]
+=================================== FAILURES ===================================
+_________________ test_a36_cli_controls_and_terminal_approval __________________
+
+rig = <function rig.<locals>.build at 0x107af9080>
+tmp_path = PosixPath('/private/var/folders/pt/xyrzmtmj2nq_kc6njb_7nhd80000gn/T/pytest-of-luxingwen/pytest-3/test_a36_cli_controls_and_term0')
+capsys = <_pytest.capture.CaptureFixture object at 0x107cdca10>
+
+    def test_a36_cli_controls_and_terminal_approval(rig, tmp_path, capsys):
+        e, a, s, _ = rig(send_mode="manual")
+        add(a, msg())
+        e.tick()
+        db = s.db.execute("PRAGMA database_list").fetchone()[2]
+        task = s.tasks()[0]["task_id"]
+        # 控制进程使用真实 UTC，因此把合成任务有效期放到未来。
+        s.db.execute("UPDATE reply_task SET expires_at='2099-01-01T00:00:00+00:00'")
+        for args in (
+            ["status"],
+            ["tasks", "list"],
+            ["tasks", "show", task],
+            ["tasks", "approve", task],
+            ["pause"],
+            ["resume"],
+            ["cleanup"],
+        ):
+            assert main([*args, "--db", db]) == 0
+        assert s.task(task)["status"] == "CANCELLED"
+        assert main(["tasks", "approve", task, "--db", db]) == 2
+        assert main(["resume", "--db", db]) == 2
+        assert main(["status", "--db", str(tmp_path / "absent")]) == 2
+        assert not a.calls
+        output = capsys.readouterr().out
+>       assert "inflight_cannot_retract" in output and "CANCELLED" in output
+E       assert ('inflight_cannot_retract' in '{\n  "state": {\n    "id": 1,\n    "binding_id": "local-test-001",\n    "run_id": "0d16ef8da5714ce7a55e24be03cd1901",...README。"\n}\n{\n  "status": "BLOCKED",\n  "reason": "ValueError",\n  "action": "检查配置、平台、测试群绑定和运行授权；实机步骤见 README。"\n}\n' and 'CANCELLED' in '{\n  "state": {\n    "id": 1,\n    "binding_id": "local-test-001",\n    "run_id": "0d16ef8da5714ce7a55e24be03cd1901",...README。"\n}\n{\n  "status": "BLOCKED",\n  "reason": "ValueError",\n  "action": "检查配置、平台、测试群绑定和运行授权；实机步骤见 README。"\n}\n')
+
+tests/test_m4.py:262: AssertionError
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.11.15-final-0 _______________
+
+Name                       Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------
+src/wechat_cs/delta.py        35      1     12      1    96%   25
+src/wechat_cs/engine.py      110      1     36      1    99%   150
+src/wechat_cs/policy.py       24      0      8      0   100%
+src/wechat_cs/replies.py      79      1     42      1    98%   127
+src/wechat_cs/storage.py     154      2     44      3    97%   14->16, 104, 195
+----------------------------------------------------------------------
+TOTAL                        402      5    142      6    98%
+Coverage JSON written to file reports/coverage-core.json
+Required test coverage of 85.0% reached. Total coverage: 97.98%
+=========================== short test summary info ============================
+FAILED tests/test_m4.py::test_a36_cli_controls_and_terminal_approval - assert...
+1 failed, 133 passed in 1.73s
